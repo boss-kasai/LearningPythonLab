@@ -16,5 +16,5 @@ repos:
         name: Check licenses
         entry: bash -c 'uv run pip-licenses --from=mixed --format=json | jq ".[] | select(.License | contains(\"GPL\"))" | tee /tmp/gpl_check_output && if [ -s /tmp/gpl_check_output ]; then echo "GPL license found!" && exit 1; else echo "No GPL licenses found" && exit 0; fi'
         language: system
-        files: ^(pyproject\.toml|requirements\.txt|Pipfile)$
+        # files: ^(pyproject\.toml|requirements\.txt|Pipfile)$
         types_or: [file]
