@@ -9,3 +9,10 @@ repos:
     hooks:
       - id: mypy
         args: ["--strict"]
+  - repo: local
+    hooks:
+      - id: check-licenses
+        name: Check licenses
+        entry: bash -c "pip-licenses --from=mixed --format=json | jq '.[] | select(.License == \"GPL\")' && exit 1 || exit 0"
+        language: system
+        types: [python]
