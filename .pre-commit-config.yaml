@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.280  # ここに特定のバージョンを指定
+    rev: v0.0.280
     hooks:
       - id: ruff
 
@@ -9,10 +9,11 @@ repos:
     hooks:
       - id: mypy
         args: ["--strict"]
+
   - repo: local
     hooks:
       - id: check-licenses
         name: Check licenses
-        entry: bash -c "pip-licenses --from=mixed --format=json | jq '.[] | select(.License == \"GPL\")' && exit 1 || exit 0"
+        entry: bash -c 'pip-licenses --from=mixed --format=json | jq ".[] | select(.License | contains(\"GPL\"))" && exit 1 || exit 0'
         language: system
         types: [python]
