@@ -3,7 +3,7 @@ from src.converter_1 import (
 )
 
 
-def test_convert_to_snake_case():
+def test_convert_to_snake_case() -> None:
     assert (
         convert_to_snake_case("hello world") == "hello_world"
     )  # 入力と出力の理想系を入力する

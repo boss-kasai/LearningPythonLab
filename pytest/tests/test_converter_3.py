@@ -1,11 +1,13 @@
+from typing import Callable, List, Tuple
+
 from src.converter_3 import to_camel_case, to_snake_case
 
 import pytest
 
 
 # 共通のテストデータフィクスチャ
-@pytest.fixture
-def test_cases():
+@pytest.fixture  # type: ignore[attr-defined, misc]
+def test_cases() -> List[Tuple[str, str, str]]:
     return [
         ("Hello World", "hello_world", "helloWorld"),
         ("Hello, World!", "hello_world", "helloWorld"),
@@ -28,14 +30,16 @@ def test_cases():
 
 
 # パラメータ化を使ってスネークケースとキャメルケースの両方をテスト
-@pytest.mark.parametrize(
+@pytest.mark.parametrize(  # type: ignore[attr-defined, misc]
     "func, index",
     [
         (to_snake_case, 1),  # スネークケースの期待結果はインデックス1
         (to_camel_case, 2),  # キャメルケースの期待結果はインデックス2
     ],
 )
-def test_case_converter(func, index, test_cases):
+def test_case_converter(
+    func: Callable[[str], str], index: int, test_cases: List[Tuple[str, str, str]]
+) -> None:
     for input_text, expected_snake, expected_camel in test_cases:
         expected = expected_snake if index == 1 else expected_camel
         assert func(input_text) == expected

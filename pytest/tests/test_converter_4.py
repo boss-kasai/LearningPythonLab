@@ -1,11 +1,13 @@
+from typing import Dict, List, Tuple
+
 from src.converter_4 import convert_case
 
 import pytest
 
 
 # テストデータ
-@pytest.fixture
-def test_cases():
+@pytest.fixture  # type: ignore[attr-defined, misc]
+def test_cases() -> List[Tuple[str, Dict[str, str]]]:
     return [
         # 通常の文
         (
@@ -220,7 +222,7 @@ def test_cases():
     ]
 
 
-@pytest.mark.parametrize(
+@pytest.mark.parametrize(  # type: ignore[attr-defined, misc]
     "case_type",
     [
         "snake",
@@ -233,6 +235,8 @@ def test_cases():
         "lower",
     ],
 )
-def test_convert_case(case_type, test_cases):
+def test_convert_case(
+    case_type: str, test_cases: List[Tuple[str, Dict[str, str]]]
+) -> None:
     for input_text, expected_outputs in test_cases:
         assert convert_case(input_text, case_type) == expected_outputs[case_type]

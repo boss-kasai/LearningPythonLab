@@ -1,12 +1,13 @@
 import re
+from typing import Match
 
 
-def capitalize_after_digits(text):
+def capitalize_after_digits(text: str) -> str:
     # 数字の後に続く文字をキャプチャする正規表現パターン
     pattern = r"(\d)([a-zA-Z])"
 
     # キャプチャした文字を大文字に変換する関数
-    def capitalize_match(match):
+    def capitalize_match(match: Match[str]) -> str:
         return match.group(1) + match.group(2).upper()
 
     # re.subを使用して置換
