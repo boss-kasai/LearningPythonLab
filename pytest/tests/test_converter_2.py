@@ -1,11 +1,13 @@
+from typing import List, Tuple
+
 from src.converter_2 import to_snake_case
 
 import pytest
 
 
 # フィクスチャで入力データを提供
-@pytest.fixture
-def input_data():
+@pytest.fixture  # type: ignore[attr-defined, misc]
+def input_data() -> List[Tuple[str, str]]:
     return [
         ("Hello World", "hello_world"),  # 通常の文
         ("Hello, World!", "hello_world"),  # 句読点あり
@@ -27,6 +29,6 @@ def input_data():
 
 
 # テスト関数でフィクスチャを使用
-def test_convert_to_snake_case(input_data):
+def test_to_snake_case(input_data: List[Tuple[str, str]]) -> None:
     for input_text, expected in input_data:
         assert to_snake_case(input_text) == expected
