@@ -1,0 +1,15 @@
+version: '3.8'  # 必要に応じてバージョンを指定
+services:
+  db:
+    image: postgres:17.2
+    container_name: postgres_join_basic
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: join_test_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_join_basic:/var/lib/postgresql/data
+volumes:
+  postgres_join_basic:
