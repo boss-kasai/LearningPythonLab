@@ -1,0 +1,4 @@
+# PostgreSQLでのJSON型とJSONB型の比較テスト
+
+PostgresqlのJSON型とJSONB型の処置速度の
+
